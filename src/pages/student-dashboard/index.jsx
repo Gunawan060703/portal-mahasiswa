@@ -10,7 +10,7 @@ import QuickActions from "./components/QuickActions";
 import Icon from "../../components/AppIcon";
 
 const StudentDashboard = () => {
-  const studentName = "Anj*ng";
+  const studentName = "Mahasiswa";
 
   const enrolledCourses = [
     {

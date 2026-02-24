@@ -4,28 +4,28 @@ import Button from "../../../components/ui/Button";
 const QuickActions = () => {
   const actions = [
     {
-      label: "Daftar Mata Kuliah",
-      icon: "BookOpen",
-      variant: "default",
-      description: "Daftar mata kuliah semester baru",
-    },
-    {
-      label: "Kumpulkan Tugas",
-      icon: "Upload",
-      variant: "outline",
-      description: "Upload tugas yang belum dikumpulkan",
-    },
-    {
-      label: "Lihat Kalender",
+      id: 1,
+      label: "Lihat Jadwal",
       icon: "Calendar",
-      variant: "outline",
-      description: "Lihat jadwal akademik lengkap",
+      description: "Lihat jadwal kuliah mingguan",
     },
     {
-      label: "Unduh Transkrip",
-      icon: "Download",
-      variant: "secondary",
-      description: "Download transkrip nilai",
+      id: 2,
+      label: "Nilai Saya",
+      icon: "Award",
+      description: "Lihat nilai semester",
+    },
+    {
+      id: 3,
+      label: "Tugas",
+      icon: "FileText",
+      description: "Lihat daftar tugas",
+    },
+    {
+      id: 4,
+      label: "Absensi",
+      icon: "CheckSquare",
+      description: "Lihat riwayat absensi",
     },
   ];
 
@@ -34,25 +34,23 @@ const QuickActions = () => {
       <h3 className="text-lg md:text-xl font-semibold text-foreground mb-4 md:mb-6">
         Aksi Cepat
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-        {actions?.map((action, index) => (
-          <div
-            key={index}
-            className="p-4 bg-muted/50 rounded-lg border border-border hover:border-primary/50 transition-all group"
+      <div className="grid grid-cols-2 gap-3 md:gap-4">
+        {actions.map((action) => (
+          <button
+            key={action.id}
+            className="p-4 rounded-xl bg-muted/50 border border-border hover:bg-muted hover:border-primary/30 transition-all text-left group"
           >
-            <Button
-              variant={action?.variant}
-              iconName={action?.icon}
-              iconPosition="left"
-              fullWidth
-              className="mb-2"
-            >
-              {action?.label}
-            </Button>
-            <p className="text-xs text-muted-foreground text-center">
-              {action?.description}
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+              <span className="text-lg">{action.icon === "Calendar" && "📅"}</span>
+              <span className="text-lg">{action.icon === "Award" && "🏆"}</span>
+              <span className="text-lg">{action.icon === "FileText" && "📄"}</span>
+              <span className="text-lg">{action.icon === "CheckSquare" && "☑️"}</span>
+            </div>
+            <p className="font-medium text-foreground text-sm">{action.label}</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              {action.description}
             </p>
-          </div>
+          </button>
         ))}
       </div>
     </div>

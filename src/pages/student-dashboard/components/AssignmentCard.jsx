@@ -48,7 +48,7 @@ const AssignmentCard = ({ assignment }) => {
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1 min-w-0">
-          <h4 className="font-semibold text-foreground text-sm md:text-base line-clamp-2 mb-1">
+<h4 className="font-semibold text-foreground text-sm md:text-base line-clamp-2 mb-1">
             {assignment?.title}
           </h4>
           <p className="text-xs md:text-sm text-muted-foreground line-clamp-1">

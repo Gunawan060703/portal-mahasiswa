@@ -40,7 +40,6 @@ const CredentialsInfo = () => {
       {isExpanded && (
         <div className="px-4 pb-4 space-y-3">
           {credentials.map((cred, index) => {
-            // 🔥 Dynamic Label
             const label = cred.role === "Dosen" ? "NIDN" : "NIM";
 
             return (

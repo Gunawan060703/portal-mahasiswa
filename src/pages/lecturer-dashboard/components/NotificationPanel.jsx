@@ -6,124 +6,82 @@ const NotificationPanel = () => {
   const [notifications] = useState([
     {
       id: 1,
-      type: "submission",
       title: "Tugas Baru Dikumpulkan",
-      message: "5 mahasiswa telah mengumpulkan Tugas 2 - Pemrograman Web",
-      time: "10 menit yang lalu",
-      read: false,
-      icon: "FileText",
-      color: "text-primary",
+      message: "Mahasiswa telah mengumpulkan tugas Algoritma dan Struktur Data",
+      time: "2 jam yang lalu",
+      type: "info",
     },
     {
       id: 2,
-      type: "question",
-      title: "Pertanyaan dari Mahasiswa",
-      message: "Ahmad Rizki bertanya tentang materi JavaScript Async/Await",
-      time: "1 jam yang lalu",
-      read: false,
-      icon: "MessageCircle",
-      color: "text-warning",
+      title: "Pemberitahuan Nilai",
+      message: "Nilai Pemrograman Web telah diupdate",
+      time: "5 jam yang lalu",
+      type: "success",
     },
     {
       id: 3,
-      type: "deadline",
-      title: "Deadline Penilaian",
-      message: "Batas waktu input nilai UTS: 2 hari lagi",
-      time: "3 jam yang lalu",
-      read: true,
-      icon: "Clock",
-      color: "text-destructive",
-    },
-    {
-      id: 4,
-      type: "announcement",
-      title: "Pengumuman Akademik",
-      message: "Rapat koordinasi dosen Fakultas Teknik - 26 Februari 2026",
-      time: "5 jam yang lalu",
-      read: true,
-      icon: "Bell",
-      color: "text-accent",
-    },
-    {
-      id: 5,
-      type: "attendance",
       title: "Reminder Absensi",
-      message: "Jangan lupa mengisi absensi kelas Pemrograman Web hari ini",
+      message: "Jangan lupa mengisi absensi hari ini",
       time: "1 hari yang lalu",
-      read: true,
-      icon: "CheckCircle",
-      color: "text-success",
+      type: "warning",
     },
   ]);
 
-  const unreadCount = notifications?.filter((n) => !n?.read)?.length;
-
   return (
-    <div className="bg-card border border-border rounded-xl shadow-warm overflow-hidden">
-      <div className="p-4 md:p-6 border-b border-border">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Icon name="Bell" size={24} className="text-primary" />
-            <div>
-              <h2 className="text-lg md:text-xl font-semibold text-foreground">
-                Notifikasi
-              </h2>
-              {unreadCount > 0 && (
-                <p className="text-sm text-muted-foreground">
-                  {unreadCount} notifikasi belum dibaca
-                </p>
-              )}
-            </div>
-          </div>
-          <Button variant="ghost" size="sm" iconName="Settings" iconSize={18}>
-            Pengaturan
-          </Button>
-        </div>
+    <div className="bg-card border border-border rounded-xl p-4 md:p-6 shadow-warm">
+      <div className="flex items-center justify-between mb-4 md:mb-6">
+        <h3 className="text-lg md:text-xl font-semibold text-foreground flex items-center gap-2">
+          <Icon name="Bell" size={24} />
+          Notifikasi
+        </h3>
+        <button className="text-sm text-primary hover:underline">
+          Tandai semua dibaca
+        </button>
       </div>
-      <div className="divide-y divide-border max-h-[500px] overflow-y-auto">
-        {notifications?.map((notification) => (
+
+      <div className="space-y-3">
+        {notifications.map((notif) => (
           <div
-            key={notification?.id}
-            className={`p-4 hover:bg-muted/50 transition-colors cursor-pointer ${
-              !notification?.read ? "bg-primary/5" : ""
-            }`}
+            key={notif.id}
+            className="p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors"
           >
             <div className="flex items-start gap-3">
               <div
-                className={`w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 ${notification?.color}`}
+                className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  notif.type === "success"
+                    ? "bg-success/10 text-success"
+                    : notif.type === "warning"
+                      ? "bg-warning/10 text-warning"
+                      : "bg-primary/10 text-primary"
+                }`}
               >
-                <Icon name={notification?.icon} size={20} />
+                <Icon
+                  name={
+                    notif.type === "success"
+                      ? "CheckCircle"
+                      : notif.type === "warning"
+                        ? "AlertTriangle"
+                        : "Info"
+                  }
+                  size={20}
+                />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2 mb-1">
-                  <h3 className="text-sm font-semibold text-foreground line-clamp-1">
-                    {notification?.title}
-                  </h3>
-                  {!notification?.read && (
-                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-1" />
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-                  {notification?.message}
+                <h4 className="font-semibold text-foreground text-sm mb-1">
+                  {notif.title}
+                </h4>
+                <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                  {notif.message}
                 </p>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-muted-foreground flex items-center gap-1">
-                    <Icon name="Clock" size={12} />
-                    {notification?.time}
-                  </span>
-                  {!notification?.read && (
-                    <Button variant="ghost" size="xs">
-                      Tandai Dibaca
-                    </Button>
-                  )}
-                </div>
+                <p className="text-xs text-muted-foreground">{notif.time}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="p-4 border-t border-border">
-        <Button variant="outline" fullWidth iconName="Eye" iconPosition="left">
+
+      <div className="mt-4 pt-4 border-t border-border">
+        <Button variant="outline" className="w-full">
           Lihat Semua Notifikasi
         </Button>
       </div>

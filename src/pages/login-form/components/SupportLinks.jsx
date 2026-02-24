@@ -7,20 +7,26 @@ const SupportLinks = () => {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
         <a
           href="#"
-          onClick={(e) => e?.preventDefault()}
-          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
         >
-          <Icon name="HelpCircle" size={18} />
+          <Icon name="HelpCircle" size={16} />
           <span>Bantuan</span>
         </a>
-        <span className="hidden sm:inline text-border">|</span>
+        <span className="text-muted-foreground hidden sm:inline">•</span>
         <a
           href="#"
-          onClick={(e) => e?.preventDefault()}
-          className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
         >
-          <Icon name="Globe" size={18} />
-          <span>Bahasa Indonesia</span>
+          <Icon name="FileText" size={16} />
+          <span>Ketentuan</span>
+        </a>
+        <span className="text-muted-foreground hidden sm:inline">•</span>
+        <a
+          href="#"
+          className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+        >
+          <Icon name="Shield" size={16} />
+          <span>Privasi</span>
         </a>
       </div>
     </div>

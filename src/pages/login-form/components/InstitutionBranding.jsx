@@ -13,7 +13,7 @@ const InstitutionBranding = () => {
         Portal Mahasiswa & Dosen
       </h1>
       <p className="text-sm md:text-base text-muted-foreground">
-        Portal Akademik Universitas HahahaHihihi
+        Portal Akademik Universitas Kelapa Muda
       </p>
     </div>
   );
